@@ -100,20 +100,20 @@ load('assets/js/recommendations.json', function(xhr) {
 	document.getElementById("btn-prev").onclick = function() {
 		// Making sure this functions will not run if it's the 0px of the slider
 		if (parseInt(listRecommendations.style.left) != 0) {
-			var currentPosition = parseInt(listRecommendations.style.left) + 230;
+			var currentPosition = parseInt(listRecommendations.style.left) + 292;
 			listRecommendations.style.left = currentPosition + 'px';
-		};
+		}
 	}
 
 	// Next button
-	var num = parseInt(listRecommendations.style.left);
-	var maxValue = children.length * 230 + 110;
+	var num = 292;
 
 	document.getElementById("btn-next").onclick = function() {
-		if (num < maxValue) {
-			var currentPosition = parseInt(listRecommendations.style.left);
-			num += 230;
-			listRecommendations.style.left = '-' + num + 'px';
+		// Setting a limit
+		if (listRecommendations.style.left != '-1168px') {
+			var currentPosition = parseInt(listRecommendations.style.left) - 292;
+			num = currentPosition;
+			listRecommendations.style.left = num + 'px';
 		};
 	}
 });
