@@ -12,14 +12,13 @@ var referenceTitle = document.getElementById('reference-title');
 var referencePrice = document.getElementById('reference-price');
 var referenceOldPrice = document.getElementById('reference-oldPrice');
 var referencePaymentConditions = document.getElementById('reference-paymentConditions');
-
 var listRecommendations = document.getElementById('list-recommendations');
 
 // Requesting the JSON File
 load('assets/js/recommendations.json', function(xhr) {
 	var data = xhr.response;
 
-	// The JSON provided is invalid - that's why I'm removing the a few things with regex below
+	// The JSON provided is invalid - that's why I'm removing a few things with regex below
 	var str = data.replace(/^X\(|\);/g, '');
 
 	// Converting data to a valid JSON format
@@ -35,6 +34,7 @@ load('assets/js/recommendations.json', function(xhr) {
 	referencePrice.innerHTML = objData.price;
 	referencePaymentConditions.innerHTML = objData.productInfo.paymentConditions;
 
+	// Checking if oldPrice is available
 	if (objData.oldPrice != null) {
 		referenceOldPrice.innerHTML = 'de: ' + objData.oldPrice;
 	};
@@ -84,7 +84,7 @@ load('assets/js/recommendations.json', function(xhr) {
 	var childrenWidth = 0;
 
 	for (var i = 0; i < children.length; i++) {
-	    childrenWidth += children[i].offsetWidth;
+		childrenWidth += children[i].offsetWidth;
 	}
 
 	// Adding margin and padding
@@ -101,13 +101,13 @@ load('assets/js/recommendations.json', function(xhr) {
 		// Making sure this functions will not run if it's the 0px of the slider
 		if (parseInt(listRecommendations.style.left) != 0) {
 			var currentPosition = parseInt(listRecommendations.style.left) + 230;
-	        listRecommendations.style.left = currentPosition + 'px';
-    	};
-    }
+			listRecommendations.style.left = currentPosition + 'px';
+		};
+	}
 
-    // Next button
-    var num = parseInt(listRecommendations.style.left);
-    var maxValue = children.length * 230 + 110;
+	// Next button
+	var num = parseInt(listRecommendations.style.left);
+	var maxValue = children.length * 230 + 110;
 
 	document.getElementById("btn-next").onclick = function() {
 		if (num < maxValue) {
@@ -115,7 +115,7 @@ load('assets/js/recommendations.json', function(xhr) {
 			num += 230;
 			listRecommendations.style.left = '-' + num + 'px';
 		};
-    }
+	}
 });
 
 // Creating a function to load the JSON file
@@ -125,10 +125,10 @@ function load(url, callback) {
 	xhr.onreadystatechange = function () {
 		// Checking if it's still loading
 		if (xhr.readyState < 4) {
-            return;
-        }
+			return;
+		}
 
-        // If it's everything OK, deliver all data
+		// If it's everything OK, deliver all data
 		if (xhr.readyState === 4) {
 			callback(xhr);
 		}
